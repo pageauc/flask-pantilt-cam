@@ -1,5 +1,5 @@
 # flask-pantilt-cam.py
-A flask python3 live stream pan-tilt web page. Uses Keyboard or mouse buttons to control a pimoroni pantilthat assembly with 
+A flask python3 low latency live stream pan-tilt web page. Uses Keyboard or mouse buttons to control a pimoroni pantilthat assembly with 
 attached pi camera module (Picamera2, Libcamera compatible). 
 Has Take Photo and View Photos onscreen buttons.
 
@@ -23,8 +23,8 @@ I started from scratch using just prompts and no example starting code. The Take
 * Pimoroni pantilthat assembly, installed and working.
 * A Pi Camera module (compatible with Picamera2, libcamera python libraries). Installed on pantilthat assembly and working.
 * User should be comfortable with working in a terminal or SSH session
-* User should have basic skills with computer hardware assembly, testing and problem solving issues.
-* Internet access and local area network is required for installing software from Github.
+* User should have basic skills with computer hardware assembly (pantilt hat), testing and problem solving issues.
+* Internet access and local area network is required for installing software from Github and accessing the web page from another computer on you local area network..
 
 ### Installation
 
