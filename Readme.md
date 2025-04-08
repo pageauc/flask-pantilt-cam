@@ -84,7 +84,7 @@ To update your existing cloned project execute the commands below from SSH or Te
 
 ### Credits
 
-Claude Pageau developed this application from scatch using DeepSeek AI.  
+Claude Pageau developed this application from scatch using only DeepSeek generative AI prompts.  
 I called my assistant Codey. It was a rewarding and at times frustrating experience. I started from scratch using just prompts and no example starting code.
 
 GitHub Repo: https://github.com/pageauc/flask-pantilt-cam
