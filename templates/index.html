@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <input type="hidden" id="photos-dir" value="{{ photos_dir }}">
+    
+    <h3>{{ title }}</h3>
+    <div id="video-container">
+        <img id="camera-feed" src="{{ url_for('video_feed') }}">
+    </div>
+    
+    <div class="controls">
+        <div class="button-row">
+            <button id="up">↑ Up</button>
+        </div>
+        <div class="button-row">
+            <button id="left">← Left</button>
+            <button id="center">Center</button>
+            <button id="right">→ Right</button>
+        </div>
+        <div class="button-row">
+            <button id="down">↓ Down</button>
+        </div>
+        <div class="button-row">
+            <button id="capture">📸 Take Photo</button>
+            <button id="browse">🖼️ View Photos</button>
+        </div>
+        <div class="keyboard-note">(Keyboard arrow keys also work)</div>
+    </div>
+    
+    <div class="status">
+        Pan: <span id="pan-value">0</span>° | Tilt: <span id="tilt-value">0</span>°
+    </div>
+    
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

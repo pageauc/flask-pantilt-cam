@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; margin-bottom: 20px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .photo-item { background: white; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .photo-item img { width: 100%; height: 150px; object-fit: cover; cursor: pointer; transition: transform 0.2s; }
+        .photo-item img:hover { transform: scale(1.03); }
+        .photo-name { padding: 8px; text-align: center; font-size: 14px; word-break: break-all; }
+        
+        /* Image viewer styles */
+        #image-viewer { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0,0,0,0.9); 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 1000; 
+        }
+        #viewer-image { max-height: 90vh; max-width: 90vw; }
+        #close-viewer { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            background: rgba(255,255,255,0.3); 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            font-size: 20px; 
+            cursor: pointer; 
+        }
+        
+        /* Pagination styles */
+        .pagination { display: flex; justify-content: center; margin: 20px 0; }
+        .pagination a, .pagination span { 
+            padding: 8px 16px; 
+            margin: 0 4px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            text-decoration: none; 
+            color: #333; 
+        }
+        .pagination a:hover { background-color: #f0f0f0; }
+        .current-page { background-color: #4CAF50; color: white; border-color: #4CAF50; }
+		.btn {
+			padding: 8px 16px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			text-decoration: none;
+			font-size: 14px;
+		}
+
+		.btn:hover {
+			background-color: #45a049;
+			
+		.header {
+			display: center;
+			font-size: 14px
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+			
+    </style>
+</head>
+<body>   
+	<center><h2>View {{title}}<h2>
+	<a href="/" class="btn">Back to Camera</a></center>
+
+    <div class="container">
+         <div class="photo-grid">
+            {% for file in files %}
+            <div class="photo-item">
+                <img src="/photos/{{ file }}" 
+                     alt="{{ file }}"
+                     onclick="showImage('/photos/{{ file }}')">
+                <div class="photo-name">{{ file }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Image viewer overlay -->
+        <div id="image-viewer">
+            <button id="close-viewer" onclick="closeViewer()">×</button>
+            <img id="viewer-image" src="" alt="Enlarged view">
+        </div>
+
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            {% if current_page > 1 %}
+                <a href="/browse?directory={{ current_dir }}&page={{ current_page-1 }}">Previous</a>
+            {% endif %}
+            
+            <span class="current-page">Page {{ current_page }} of {{ total_pages }}</span>
+            
+            {% if current_page < total_pages %}
+                <a href="/browse?directory={{ current_dir }}&page={{ current_page+1 }}">Next</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Image viewer functionality
+        function showImage(url) {
+            const viewer = document.getElementById('image-viewer');
+            const img = document.getElementById('viewer-image');
+            img.src = url;
+            viewer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeViewer() {
+            document.getElementById('image-viewer').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close viewer when clicking outside image
+        document.getElementById('image-viewer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeViewer();
+            }
+        });
+
+        // Close with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeViewer();
+            }
+        });
+
+        // Notify parent window when loaded
+        if (window.opener) {
+            window.opener.postMessage({ type: 'browseWindowReady' }, '*');
+        }
+
+        // Notify parent when closing
+        window.addEventListener('beforeunload', function() {
+            if (window.opener) {
+                window.opener.postMessage({ type: 'browseWindowClosed' }, '*');
+            }
+        });
+    </script>
+</body>
+</html>
