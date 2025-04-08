@@ -54,6 +54,13 @@ From a browser on your local network paste the flask url eg
 
     http://192.168.1.178:5000
 	
+### Upgrade
+
+To update your existing cloned project execute the commands below from SSH or Terminal session.
+
+    cd ~/flask-pantilt-cam
+	git pull
+	
 ![webserver pan tilt control page](flask-pantilt-cam.png)
 		
 
