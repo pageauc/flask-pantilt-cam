@@ -4,7 +4,7 @@
 class Config:
     # Camera Settings
     IM_WIDTH = 800
-    IM_HEIGHT = 400
+    IM_HEIGHT = 480
     IM_HFLIP = True
     IM_VFLIP = True
 
