@@ -6,7 +6,7 @@ body {
 }
 #video-container { 
     margin: 20px auto; 
-    width: 640px; 
+    width: flex; 
     background-color: white; 
     padding: 10px; 
     border-radius: 8px; 
