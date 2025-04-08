@@ -6,8 +6,8 @@ Has Take Photo and View Photos onscreen buttons.
 ### Introduction
 
 This program is a python3 flask web server application that allows control of a pimoroni pantilthat with a picamera2 compatible camera module attached.
-A web page displays a low latency live camera stream.
-Keyboard arrow keys or on screen navigation buttons contol pantilt. A Take Photo button can be used to take, view and save an image to a specified folder.
+A web page displays a low latency live camera video stream.
+Keyboard arrow keys or on screen navigation buttons control pantilt. A Take Photo button can be used to take, view and save an image to a specified folder.
 The Save image folder path will be auto created per config.py setting.
 A view photos button brings up a browse thumbnails image grid web page of previously saved images. Click on Thumbnail to view full size image. 
 
@@ -54,7 +54,7 @@ From a browser on your local network paste the flask url eg
 
     http://192.168.1.178:5000
 	
-![webserver browser screen shot](flask-pantilt-cam.png)
+![webserver pan tilt control page](flask-pantilt-cam.png)
 		
 
 ### Credits
