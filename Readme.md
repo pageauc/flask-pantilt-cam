@@ -63,7 +63,7 @@ To run this app in a python3 virtual Environment. If you already have a python3 
     sudo apt install python3-venv
     # Create a virtual environment, Note you can change venv to another name if desired.
     python -m venv --system-site-packages /home/pi/venv
-	# Activate. You will see a different prompt eg (venv) pi@host-name:
+	# Activate. You will see a different prompt eg (venv) pi@hostname:
     source /home/pi/venv/bin/activate
 	# Run in app in the virtual environment
 	cd flask-pantilt-cam
