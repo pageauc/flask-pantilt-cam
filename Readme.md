@@ -53,6 +53,24 @@ To launch the web server
 From a browser on your local network paste the flask url eg
 
     http://192.168.1.178:5000
+
+### Run in Python Virtual Environment
+
+To run this app in a python3 virtual Environment. If you already have a python3 virtual env with another name, you can use that.
+
+    cd ~
+	# If required install virtual environment dependency.
+    sudo apt install python3-venv
+    # Create a virtual environment, Note you can change venv to another name if desired.
+    python -m venv --system-site-packages /home/pi/venv
+	# Activate. You will see a different prompt eg (venv) pi@host-name:
+    source /home/pi/venv/bin/activate
+	# Run in app in the virtual environment
+	cd flask-pantilt-cam
+    ./flask-pantilt-cam.py
+	# When done ctrl-C to stop app
+	# To exit the virtual environment
+	deactivate
 	
 ### Upgrade
 
