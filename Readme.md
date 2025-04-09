@@ -2,6 +2,7 @@
 A flask python3 low latency live stream pan-tilt web page. Uses Keyboard or mouse buttons to control a pimoroni pantilthat assembly with 
 attached pi camera module (Picamera2, Libcamera compatible). 
 Has Take Photo and View Photos onscreen buttons.
+![webserver pan tilt control page](flask-pantilt-cam.png)
 
 ### Introduction
 
@@ -77,10 +78,7 @@ To run this app in a python3 virtual Environment. If you already have a python3 
 To update your existing cloned project execute the commands below from SSH or Terminal session.
 
     cd ~/flask-pantilt-cam
-	git pull
-	
-![webserver pan tilt control page](flask-pantilt-cam.png)
-		
+	git pull	
 
 ### Credits
 
