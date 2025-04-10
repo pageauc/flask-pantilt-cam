@@ -196,5 +196,7 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=5000, threaded=True)
     finally:
         picam2.stop_recording()
+        picam2.close()
         pantilthat.pan(0)
         pantilthat.tilt(0)
+    print("\nBye ...")

@@ -75,6 +75,7 @@ To run this app in a python3 virtual Environment. If you already have a python3 
 To update your existing cloned project execute the commands below from SSH or Terminal session.
 
     cd ~/flask-pantilt-cam
+	# git reset --hard 
 	git pull	
 
 ### Credits
