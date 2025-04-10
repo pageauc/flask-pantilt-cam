@@ -3,7 +3,7 @@ A flask python3 low latency live stream pan-tilt web page. Uses Keyboard or mous
 attached pi camera module (Picamera2, Libcamera compatible). 
 Has Take Photo and View Photos onscreen buttons.
 
-![webserver pan tilt control page](flask-pantilt-cam.png)
+<img src="flask-pantilt-cam.png" width=800 height=777>
 
 ### Introduction
 
