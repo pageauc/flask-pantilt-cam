@@ -1,7 +1,7 @@
 # flask-pantilt-cam.py
-A flask python3 low latency live stream pan-tilt web page.
+A python3 low latency live stream pan-tilt flask web server.
 
-<center><img src="flask-pantilt-cam.png" width=600></center>
+<img src="flask-pantilt-cam.png" width=600>
 
 ### Introduction
 
