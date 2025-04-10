@@ -32,6 +32,7 @@ Open a terminal or SSH session and clone the github repository.
 
     cd ~
     sudo apt update && sudo apt upgrade -y
+	sudo apt install python3-pantilthat
     git clone https://github.com/pageauc/flask-pantilt-cam.git
     cd flask-pantilt-cam
     chmod +x flask-pantilt-cam.py

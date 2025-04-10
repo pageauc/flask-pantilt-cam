@@ -10,12 +10,24 @@ import io
 import threading
 from datetime import datetime
 from config import Config
-config = Config() # Load Variables from config.py file class Config()
+
+prog_ver = "1.0"
 
 app = Flask(__name__)
 
+config = Config() # Load Variables from config.py file class Config()
 # create absolute path for snapshot images folder
-IM_SNAP_FILEPATH = os.path.abspath(config.IM_SNAP_FILEPATH)
+image_folder = os.path.abspath(config.IM_SNAP_FILEPATH)
+os.makedirs(image_folder, exist_ok=True)  # create folder path if it does not exist
+print(f"flask-pantilt-cam.py ver {prog_ver}")
+print(f"INFO : Images will be saved to {image_folder}")
+
+# ===== PAN-TILT INIT =====
+pantilthat.pan(0)
+pantilthat.tilt(0)
+pantilthat.idle_timeout(0.1)
+current_pan = 0
+current_tilt = 0
 
 # flip pan tilt controls to match flipped image
 if config.IM_HFLIP:
@@ -32,10 +44,6 @@ else:
     up = 'up'
     down = 'down'
 
-IMAGE_FOLDER = config.IM_SNAP_FILEPATH
-os.makedirs(config.IM_SNAP_FILEPATH, exist_ok=True)
-print(f"save images to folder: {config.IM_SNAP_FILEPATH}")
-
 # ===== CAMERA INITIALIZATION =====
 picam2 = Picamera2()
 video_config = picam2.create_video_configuration(
@@ -48,13 +56,6 @@ still_config = picam2.create_still_configuration(
     main={"size": (config.IM_SNAP_WIDTH, config.IM_SNAP_HEIGHT)},
     transform=Transform(hflip=config.IM_HFLIP, vflip=config.IM_VFLIP)
 )
-
-# ===== PAN-TILT INIT =====
-pantilthat.pan(0)
-pantilthat.tilt(0)
-pantilthat.idle_timeout(0.1)
-current_pan = 0
-current_tilt = 0
 
 # ===== STREAMING HANDLER =====
 class StreamingOutput(io.BufferedIOBase):
@@ -82,7 +83,7 @@ def generate_frames():
 def capture_photo():
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     filename = f"{config.IM_SNAP_PREFIX}-{timestamp}.jpg"
-    filepath = os.path.join(config.IM_SNAP_FILEPATH, filename)
+    filepath = os.path.join(image_folder, filename)
 
     picam2.stop_recording()
     picam2.switch_mode(still_config)
@@ -97,7 +98,7 @@ def capture_photo():
 def index():
     return render_template('index.html',
                          title=config.WEB_TITLE,
-                         photos_dir=config.IM_SNAP_FILEPATH)
+                         photos_dir=image_folder)
 
 @app.route('/video_feed')
 def video_feed():
@@ -106,7 +107,7 @@ def video_feed():
 
 @app.route('/photos/<filename>')
 def serve_photo(filename):
-    return send_from_directory(config.IM_SNAP_FILEPATH, filename)
+    return send_from_directory(image_folder, filename)
 
 @app.route('/control', methods=['POST'])
 def control():
@@ -146,15 +147,15 @@ def capture():
 
 @app.route('/get_image/<filename>')
 def get_image(filename):
-    return send_from_directory(IMAGE_FOLDER, filename)
+    return send_from_directory(image_folder, filename)
 
 @app.route('/browse')
 def browse():
     """Photo browser interface"""
     try:
-        path = os.path.abspath(request.args.get('directory', config.IM_SNAP_FILEPATH))
-        if not path.startswith(os.path.abspath(config.IM_SNAP_FILEPATH)):
-            path = config.IM_SNAP_FILEPATH
+        path = os.path.abspath(request.args.get('directory', image_folder))
+        if not path.startswith(os.path.abspath(image_folder)):
+            path = image_folder
 
         page = int(request.args.get('page', 1))
 
