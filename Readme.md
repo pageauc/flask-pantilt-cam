@@ -1,5 +1,4 @@
-# flask-pantilt-cam.py
-## FLASK PANTILT CAMERA - flask, pan-tilt control for a pi-camera video stream
+## FLASK PANTILT CAMERA - pan-tilt control a pi-camera video stream
 
 <img src="flask-pantilt-cam.png" width=600>
 
