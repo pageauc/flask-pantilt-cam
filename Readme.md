@@ -1,5 +1,5 @@
 # flask-pantilt-cam.py
-A python3 low latency live stream pan-tilt flask web server.
+## FLASK PANTILT CAMERA - flask, pan-tilt control for a pi-camera video stream
 
 <img src="flask-pantilt-cam.png" width=600>
 
