@@ -17,11 +17,11 @@ I developed this app completely from scratch using only DeepSeek generative AI p
 plus misc edits and fixes. 
 
 I called my DeepSeek AI assistant Codey. The basic version took approximately two hours for the AI interaction and testing on a Raspberry Pi 3B+. 
-I started from scratch using just prompts and no example starting code. The Take and View photos feature took quite a bit longer due trouble shooting snd testing issues.
+I started from scratch using just prompts and no example starting code. The Take and View photos feature took quite a bit longer due trouble shooting and testing issues.
 
 ### Requirements
 
-* Raspberry Pi computer (model 3 or greater) with Raspberry OS Bullseye or later (32 or 64 bit).
+* Raspberry Pi computer (model 3 or greater) with Raspberry OS Bullseye or later (32 or 64 bit). May work on RPI 2 but not tested.
 * Pimoroni pantilthat assembly, installed and working.
 * A Pi Camera module (compatible with Picamera2, libcamera python libraries). Installed on pantilthat assembly and working.
 * User should be comfortable with working in a terminal or SSH session
