@@ -35,6 +35,8 @@ Open a terminal or SSH session and clone the github repository.
     git clone https://github.com/pageauc/flask-pantilt-cam.git
     cd flask-pantilt-cam
     chmod +x flask-pantilt-cam.py
+	sudo apt install supervisor
+	chmod +x flask-pantilt-cam.sh
 	
 Edit the config.py settings	
 	
@@ -69,6 +71,22 @@ To run this app in a python3 virtual Environment. If you already have a python3 
 	# When done ctrl-C to stop app
 	# To exit the virtual environment
 	deactivate
+
+### Run in Background using supervisor.
+
+The bash script flask-pantilt-cam.sh manages the supervisorctl background service for flask-pantilt-cam.py
+per the associated [configuration .conf files ](https://raw.githubusercontent.com/pageauc/flask-pantilt-cam/refs/heads/main/source/supervisor/flask-pantilt-cam.conf) 
+located in the supervisor folder. 
+The scripts can start the .py script as a background task under the specified user= in the conf file settings. 
+These .conf files will by default not autostart run on boot but will attempt a restart if there is a program issue. 
+Eg problem with camera.
+
+Basic instuctions to install and run
+
+    cd ~/flask-pantilt-cam
+    ./flask-pantilt-cam.sh help
+    ./flask-pantilt-cam.sh install
+    ./flask-pantilt-cam.sh start	
 	
 ### Upgrade
 
